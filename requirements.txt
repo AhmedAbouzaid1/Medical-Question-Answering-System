@@ -1,0 +1,128 @@
+absl-py @ file:///C:/ci/absl-py_1615411229697/work
+aio-pika==6.4.1
+aiohttp @ file:///C:/ci/aiohttp_1614361024229/work
+aiormq==3.3.1
+appdirs==1.4.4
+astunparse==1.6.3
+async-timeout==3.0.1
+attrs @ file:///tmp/build/80754af9/attrs_1604765588209/work
+beautifulsoup4==4.9.1
+blinker==1.4
+brotlipy==0.7.0
+bs4==0.0.1
+cachetools @ file:///tmp/build/80754af9/cachetools_1611600262290/work
+certifi==2020.6.20
+cffi @ file:///C:/ci/cffi_1613247279197/work
+chardet @ file:///C:/ci/chardet_1605303225733/work
+click @ file:///home/linux1/recipes/ci/click_1610990599742/work
+colorama==0.4.4
+configparser==5.0.2
+coverage @ file:///C:/ci/coverage_1614615074147/work
+crayons==0.4.0
+cryptography @ file:///C:/ci/cryptography_1615532531877/work
+cssselect==1.1.0
+Cython==0.29.14
+DAWG-Python==0.7.2
+deeppavlov==0.14.0
+docker==4.4.4
+docopt==0.6.2
+english==2020.7.0
+fake-useragent==0.1.11
+fastapi==0.47.1
+filelock==3.0.12
+gast @ file:///tmp/build/80754af9/gast_1597433534803/work
+google-auth @ file:///tmp/build/80754af9/google-auth_1616008050444/work
+google-auth-oauthlib @ file:///tmp/build/80754af9/google-auth-oauthlib_1614894617465/work
+google-pasta==0.2.0
+googlesearch-python==2020.0.2
+grpcio @ file:///C:/ci/grpcio_1614884412260/work
+h11==0.9.0
+h5py==2.10.0
+idna==2.8
+importlib-metadata @ file:///C:/ci/importlib-metadata_1615900494248/work
+jieba==0.42.1
+joblib @ file:///tmp/build/80754af9/joblib_1613502643832/work
+Keras-Applications @ file:///tmp/build/80754af9/keras-applications_1594366238411/work
+Keras-Preprocessing @ file:///tmp/build/80754af9/keras-preprocessing_1612283640596/work
+lxml==4.6.3
+Markdown @ file:///C:/ci/markdown_1614364121613/work
+mkl-fft==1.3.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+monotonic==1.5
+multidict @ file:///C:/ci/multidict_1607362065515/work
+mysql-connector==2.2.9
+neotime==1.7.4
+nltk==3.4.5
+numpy==1.18.0
+oauthlib==3.1.0
+opt-einsum==3.1.0
+overrides==2.7.0
+packaging==20.9
+pamqp==2.3.0
+pandas==0.25.3
+pansi==2020.7.3
+parse==1.19.0
+prometheus-client==0.7.1
+prompt-toolkit==2.0.10
+protobuf==3.14.0
+py2neo==2021.0.1
+pyahocorasick==1.4.2
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pydantic==1.3
+pyee==8.1.0
+Pygments==2.8.1
+PyJWT==1.7.1
+pymorphy2==0.8
+pymorphy2-dicts==2.4.393442.3710985
+pymorphy2-dicts-ru==2.4.417127.4579844
+pyOpenSSL==19.1.0
+pyparsing==2.4.7
+pyppeteer==0.2.5
+pyquery==1.4.3
+pyreadline==2.1
+PySocks @ file:///C:/ci/pysocks_1605287845585/work
+pyTelegramBotAPI==3.6.7
+python-dateutil @ file:///home/ktietz/src/ci/python-dateutil_1611928101742/work
+pytz==2019.1
+pywin32==227
+regex @ file:///C:/ci/regex_1616096205357/work
+requests==2.22.0
+requests-html==0.10.0
+requests-oauthlib==1.3.0
+rsa @ file:///tmp/build/80754af9/rsa_1614366226499/work
+ruamel.yaml==0.15.100
+rusenttokenize==0.0.5
+sacremoses==0.0.35
+scikit-learn==0.21.2
+scipy==1.4.1
+selenium @ file:///C:/ci/selenium_1614268348533/work
+sentencepiece==0.1.95
+six @ file:///C:/ci/six_1605187374963/work
+soupsieve==2.0.1
+starlette==0.12.9
+tensorboard @ file:///home/builder/ktietz/aggregate/tensorflow_recipes/ci_te/tensorboard_1614593728657/work/tmp_pip_dir
+tensorboard-plugin-wit==1.6.0
+tensorflow==2.3.0
+tensorflow-estimator @ file:///tmp/build/80754af9/tensorflow-estimator_1599136169057/work/whl_temp/tensorflow_estimator-2.3.0-py2.py3-none-any.whl
+termcolor==1.1.0
+tokenizers==0.7.0
+torch==1.8.0
+tqdm==4.41.1
+transformers==2.11.0
+typing-extensions @ file:///tmp/build/80754af9/typing_extensions_1611751222202/work
+urllib3==1.25.9
+uvicorn==0.11.7
+w3lib==1.22.0
+wcwidth==0.2.5
+webdriver-manager==3.3.0
+websocket-client==0.58.0
+websockets==8.1
+Werkzeug @ file:///home/ktietz/src/ci/werkzeug_1611932622770/work
+win-inet-pton @ file:///C:/ci/win_inet_pton_1605306167264/work
+wincertstore==0.2
+wrapt==1.12.1
+yarl @ file:///C:/ci/yarl_1606940076464/work
+zipp @ file:///tmp/build/80754af9/zipp_1615904174917/work
