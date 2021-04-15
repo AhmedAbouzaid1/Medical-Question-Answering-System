@@ -232,6 +232,12 @@ def accuracy():
             #print(index, num)
         else:
             answer = kng.KGanswer(question)
+
+            pred, prob = check_similarity(question, answer)
+            print(pred, " ", prob)
+            if (pred == "contradiction"):
+                answer = False
+
             if answer == False:
                 answer, index = tagsanswer(question)
                 if index == num:

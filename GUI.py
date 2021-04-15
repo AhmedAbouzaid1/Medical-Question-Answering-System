@@ -1,7 +1,10 @@
-from question_classifier import *
-from question_parser import *
+#from question_classifier import *
+#from question_parser import *
+from MedicalKG_.MedicalKBQA.answer_search import AnswerSearcher
+from MedicalKG_.MedicalKBQA.question_classifier import QuestionClassifier
+from MedicalKG_.MedicalKBQA.question_parser import QuestionPaser
 from answer_search import *
-from fetch import tagsanswer
+from fetch import tagsanswer, check_similarity
 from tkinter import *
 import time
 
@@ -18,7 +21,10 @@ class ChatBotGraph:
         res_classify = self.classifier.classify(sent)
         print(res_classify)
         if not res_classify:
+            answer, index = tagsanswer(sent)
+            print("sim: ", answer)
             return answer
+
         res_sql = self.parser.parser_main(res_classify)
         print(res_sql)
         final_answers = self.searcher.search_main(res_sql)
@@ -26,9 +32,17 @@ class ChatBotGraph:
 
         if not final_answers:
             answer, index = tagsanswer(sent)
-
+            print("sim: ", answer)
             return answer
         else:
+            pred, prob = check_similarity(sent, final_answers[0])
+            print(pred, " ", prob)
+
+            if(pred == "contradiction"):
+                answer, index = tagsanswer(sent)
+                print("sim: ", answer)
+                return answer
+
             return '\n'.join(final_answers)
         
 def main():

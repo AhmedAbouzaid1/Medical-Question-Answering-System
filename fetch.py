@@ -221,6 +221,12 @@ def accuracy():
     kng = KG()
     for num, question in enumerate(df['question']):
         answer = kng.KGanswer(question)
+
+        # pred, prob = check_similarity(question, answer)
+        # print(pred, " ", prob)
+        # if (pred == "contradiction"):
+        #     answer, index = tagsanswer(question)
+
         if answer == False:
             answer, index = tagsanswer(question)
             if index[0] - 1 == num:

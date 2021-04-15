@@ -16,9 +16,9 @@ labels = ["contradiction", "entailment", "neutral"]
 train_df = pd.read_csv("SNLI_Corpus/snli_1.0_train.csv", nrows=100000)
 valid_df = pd.read_csv("SNLI_Corpus/snli_1.0_dev.csv")
 test_df = pd.read_csv("SNLI_Corpus/snli_1.0_test.csv")
-train_df = train_df[:10000]
-valid_df = valid_df[:10000]
-test_df = test_df[:1000]
+train_df = train_df[:50000]
+valid_df = valid_df[:50000]
+test_df = test_df[:5000]
 # Shape of the data
 print(f"Total train samples : {train_df.shape[0]}")
 print(f"Total validation samples: {valid_df.shape[0]}")
@@ -169,12 +169,12 @@ with strategy.scope():
         input_ids, attention_mask=attention_masks, token_type_ids=token_type_ids
     )
     # Add trainable layers on top of frozen layers to adapt the pretrained features on the new data.
-    BiGRU = tf.keras.layers.Bidirectional(
+    biGRU = tf.keras.layers.Bidirectional(
         tf.keras.layers.GRU(64, return_sequences=True)
     )(sequence_output)
-    # Applying hybrid pooling approach to bi_lstm sequence output.
-    avg_pool = tf.keras.layers.GlobalAveragePooling1D()(BiGRU)
-    max_pool = tf.keras.layers.GlobalMaxPooling1D()(BiGRU)
+    # Applying hybrid pooling approach to biGRU sequence output.
+    avg_pool = tf.keras.layers.GlobalAveragePooling1D()(biGRU)
+    max_pool = tf.keras.layers.GlobalMaxPooling1D()(biGRU)
     concat = tf.keras.layers.concatenate([avg_pool, max_pool])
     dropout = tf.keras.layers.Dropout(0.3)(concat)
     output = tf.keras.layers.Dense(3, activation="softmax")(dropout)
@@ -268,7 +268,7 @@ cp_callback = tf.keras.callbacks.ModelCheckpoint(
 
 model.save_weights(checkpoint_path.format(epoch=0))
 model.save('saved_model1/my_model')
-model.save('model.h5')
+model.save('model_bigru.h5')
 
 sentence1 = "Two women are observing something together."
 sentence2 = "Two women are standing with their eyes closed."
