@@ -28,8 +28,8 @@ mycursor = mydb.cursor()
 stop_words = set(stopwords.words('english'))
 np.set_printoptions(threshold=sys.maxsize)
 df = pd.read_csv("C:/Users/CSE-P07-2179-G9/PycharmProjects/pythonProject1/icliniqQAs.csv")
-#model = tf.keras.models.load_model('C:/Users/CSE-P07-2179-G9/PycharmProjects/pythonProject1/model_saved.h5')
-model = tf.keras.models.load_model('C:/Users/CSE-P07-2179-G9/PycharmProjects/pythonProject/HHH-An-Online-Question-Answering-System-for-Medical-Questions/BERT_BiLSTM.h5')
+model = tf.keras.models.load_model('model_bigru.h5')
+#model = tf.keras.models.load_model('C:/Users/CSE-P07-2179-G9/PycharmProjects/pythonProject/HHH-An-Online-Question-Answering-System-for-Medical-Questions/model_bigru.h5')
 model.summary()
 batch_size = 1
 max_length = 128  # Maximum length of input sentence to the model.

@@ -199,6 +199,7 @@ def tagsanswer(question):
 
     # Printing output
     a = sorted(Output.items(), key=lambda x: x[1], reverse=True)[:3]
+    print(a)
     res = []
     for x in a:
         q2 = df['question']
@@ -213,30 +214,33 @@ def tagsanswer(question):
     Ans = df["answer"]
     answer = Ans[index[0] - 1]
 
-    return answer, index[0] - 1,
+    return answer, index[0] - 1
 
 
 def accuracy():
     counter_max = 0
-    kng = KG()
+    #kng = KG()
     for num, question in enumerate(df['question']):
-        answer = kng.KGanswer(question)
+        #answer = kng.KGanswer(question)
 
         # pred, prob = check_similarity(question, answer)
         # print(pred, " ", prob)
         # if (pred == "contradiction"):
         #     answer, index = tagsanswer(question)
-
-        if answer == False:
-            answer, index = tagsanswer(question)
-            if index[0] - 1 == num:
-                counter_max += 1
-        else:
-            print(question, answer)
+        print(question)
+        #if answer == False:
+        answer, index = tagsanswer(question)
+        print (index)
+        if index == num:
             counter_max += 1
+        #else:
+            #print(question, answer)
+            #counter_max += 1
+    return counter_max
+
 
 def main():
-    accuracy()
+    print(accuracy())
 
 if __name__ == '__main__':
     main()
