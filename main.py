@@ -172,11 +172,27 @@ with strategy.scope():
     biGRU = tf.keras.layers.Bidirectional(
         tf.keras.layers.GRU(64, return_sequences=True)
     )(sequence_output)
-    # Applying hybrid pooling approach to biGRU sequence output.
-    # avg_pool = tf.keras.layers.GlobalAveragePooling1D()(biGRU)
-    max_pool = tf.keras.layers.GlobalMaxPooling1D()(biGRU)
+    bilstm = tf.keras.layers.Bidirectional(
+        tf.keras.layers.LSTM(64, return_sequences=True)
+    )(sequence_output)
+    # CNN = tf.keras.layers.Conv1D(filters=32, kernel_size= 5, activation='relu')(sequence_output)
+    # avg_pool = tf.keras.layers.AveragePooling1D(3)(CNN)
+    # CNN = tf.keras.layers.Conv1D(filters=32, kernel_size=5, activation='relu')(avg_pool)
+    # max_pool = tf.keras.layers.MaxPooling1D(3)(CNN)
+    # CNN = tf.keras.layers.Conv1D(filters=32, kernel_size=5, activation='relu')(max_pool)
+    # avg_pool = tf.keras.layers.GlobalAveragePooling1D()(CNN)
+    # max_pool = tf.keras.layers.GlobalMaxPooling1D()(CNN)
     # concat = tf.keras.layers.concatenate([avg_pool, max_pool])
-    dropout = tf.keras.layers.Dropout(0.3)(max_pool)
+    # Applying hybrid pooling approach to biGRU sequence output.
+    avg_pool = tf.keras.layers.GlobalAveragePooling1D()(biGRU)
+    max_pool = tf.keras.layers.GlobalMaxPooling1D()(biGRU)
+    avg_pool1 = tf.keras.layers.GlobalAveragePooling1D()(bilstm)
+    max_pool1 = tf.keras.layers.GlobalMaxPooling1D()(bilstm)
+    concat = tf.keras.layers.concatenate([avg_pool, max_pool])
+    concat1 = tf.keras.layers.concatenate([avg_pool1, max_pool1])
+    concat_all = tf.keras.layers.concatenate([concat, concat1])
+
+    dropout = tf.keras.layers.Dropout(0.3)(concat_all)
     output = tf.keras.layers.Dense(3, activation="softmax")(dropout)
     model = tf.keras.models.Model(
         inputs=[input_ids, attention_masks, token_type_ids], outputs=output
@@ -270,14 +286,3 @@ model.save_weights(checkpoint_path.format(epoch=0))
 # model.save('saved_model1/my_model')
 model.save('model_bigru(max_10k).h5')
 
-sentence1 = "Two women are observing something together."
-sentence2 = "Two women are standing with their eyes closed."
-check_similarity(sentence1, sentence2)
-
-sentence1 = "A smiling costumed woman is holding an umbrella"
-sentence2 = "A happy woman in a fairy costume holds an umbrella"
-check_similarity(sentence1, sentence2)
-
-sentence1 = "A soccer game with multiple males playing"
-sentence2 = "Some men are playing a sport"
-check_similarity(sentence1, sentence2)

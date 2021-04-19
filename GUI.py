@@ -1,6 +1,4 @@
-#from question_classifier import *
-#from question_parser import *
-from MedicalKG_.MedicalKBQA.answer_search import AnswerSearcher
+
 from MedicalKG_.MedicalKBQA.question_classifier import QuestionClassifier
 from MedicalKG_.MedicalKBQA.question_parser import QuestionPaser
 from answer_search import *
@@ -8,8 +6,9 @@ from fetch import tagsanswer, check_similarity
 from tkinter import *
 import time
 
-
 '''问答类'''
+
+
 class ChatBotGraph:
     def __init__(self):
         self.classifier = QuestionClassifier()
@@ -38,75 +37,78 @@ class ChatBotGraph:
             pred, prob = check_similarity(sent, final_answers[0])
             print(pred, " ", prob)
 
-            if(pred == "contradiction"):
+            if (pred == "contradiction"):
                 answer, index = tagsanswer(sent)
                 print("sim: ", answer)
                 return answer
 
             return '\n'.join(final_answers)
-        
+
+
 def main():
-  handler = ChatBotGraph()  
-  def sendMsg():#发送消息
-    strMsg = 'User:' + time.strftime("%Y-%m-%d %H:%M:%S",
-                                  time.localtime()) + '\n'
-    txtMsgList.insert(END, strMsg, 'greencolor')
-    txtMsgList.insert(END, txtMsg.get('0.0', END))
-    text = txtMsg.get('0.0', END)
-    txtMsg.delete('0.0', END)
-    print ("text is "+text)
-    
-    text2 = handler.chat_main(text) + '\n '
-    strMsg2 = 'XiaoMar:' + time.strftime("%Y-%m-%d %H:%M:%S",
-                                  time.localtime()) + '\n'
-    txtMsgList.insert(END, strMsg2, 'greencolor')
-    txtMsgList.insert(END, text2)    
-                                        
+    handler = ChatBotGraph()
 
-  def cancelMsg():#取消消息
-    txtMsg.delete('0.0', END)
+    def retrieve_input():  # 发送消息
+        strMsg = 'User:' + time.strftime("%Y-%m-%d %H:%M:%S",
+                                         time.localtime()) + '\n'
+        chatWindow.tag_config('quest', foreground="green")
+        chatWindow.insert(END, strMsg, 'quest')
+        chatWindow.insert(END, messageWindow.get('0.0', END))
+        text = messageWindow.get('0.0', END)
+        messageWindow.delete('0.0', END)
+        print("text is " + text)
+
+        text2 = handler.chat_main(text) + '\n'
+        strMsg2 = 'Medical Assistant:' + time.strftime("%Y-%m-%d %H:%M:%S",
+                                             time.localtime()) + '\n'
+        chatWindow.insert(END, strMsg2, 'quest')
+        chatWindow.insert(END, text2)
+    #
+    # def cancelMsg():  # 取消消息
+    #     txtMsg.delete('0.0', END)
+
+    # def retrieve_input():
+    #     input = messageWindow.get("1.0", END)
+    #     print(input)
+    #     # messageWindow.delete('0.0', END)
+    #     # answer = handler.chat_main(input)
+    #     text2 = handler.chat_main(input) + '\n '
+    #     writeanswer(text2)
+
+    # def writeanswer(answer):
+    #     strMsg = 'User:' + time.strftime("%Y-%m-%d %H:%M:%S",
+    #                                      time.localtime()) + '\n'
+    #     chatWindow.insert(END, strMsg, 'greencolor')
+    #     chatWindow.insert(END, messageWindow.get("1.0", END))
+    #     text = messageWindow.get('0.0', END)
+    #     messageWindow.delete('0.0', END)
+    #     strMsg2 = 'Medical Assistant:' + time.strftime("%Y-%m-%d %H:%M:%S",
+    #                                          time.localtime()) + '\n'
+    #     chatWindow.insert(END, strMsg2, 'greencolor')
+    #     chatWindow.insert(END, answer)
 
 
-  #创建窗口 
-  t = Tk()
-  t.title('XiaoMar')
+    root = Tk()
 
-  #创建frame容器(宽度，高度，背景)
-  frmLT = Frame(width=500, height=320, bg='white')
-  frmLC = Frame(width=500, height=150, bg='white')
-  frmLB = Frame(width=500, height=30)
-  frmRT = Frame(width=200, height=500)
+    frmchat = Frame(width=50, height=8, bg='white')
+    frmdisp = Frame(width=500, height=150, bg='white')
+    frmbtn = Frame(width=500, height=30)
 
-  #创建控件
-  txtMsgList = Text(frmLT)
-  txtMsgList.tag_config('greencolor', foreground='#008C00')#创建tag
-  txtMsg = Text(frmLC)
-  #发送消息事件
-  btnSend = Button(frmLB, text='Send', width = 8, command=sendMsg)
-  btnCancel = Button(frmLB, text='Erase', width = 8, command=cancelMsg)
-  imgInfo = PhotoImage(file = "smile doctor.gif")
-  lblImage = Label(frmRT, image = imgInfo)
-  lblImage.image = imgInfo
+    root.title("Medical Assistant")
+    root.geometry("500x500")
+    root.configure(bg='light gray')
+    root.resizable(width=TRUE, height=TRUE)
+    chatWindow = Text(root, bd=1, bg="white", width="50", height="8", font=("Arial", 12))
+    chatWindow.place(x=10, y=10, height=380, width=470)
+    messageWindow = Text(root, bd=0, bg="white", width="30", insertbackground= "black", height="4", font=("Arial", 12), foreground="black")
+    messageWindow.place(x=128, y=400, height=88, width=352)
+    scrollbar = Scrollbar(root, command=chatWindow.yview)
+    scrollbar.place(x=485, y=5, height=380)
+    Button1 = Button(root, text="Send",
+                    bd=0, bg="#0080ff",foreground='white', font=("Arial", 12), command= lambda: retrieve_input())
+    Button1.place(x=10, y=400, height=88, width= 110)
 
-  #窗口布局(span为跨越数，LT中columnspan(2)意为LT跨越两列，padx/pady意为分割比例为1/3)
-  frmLT.grid(row=0, column=0, columnspan=2, padx=1, pady=3)
-  frmLC.grid(row=1, column=0, columnspan=2, padx=1, pady=3)
-  frmLB.grid(row=2, column=0, columnspan=2)
-  frmRT.grid(row=0, column=2, rowspan=3, padx=2, pady=3)
-  #固定大小
-  frmLT.grid_propagate(0)
-  frmLC.grid_propagate(0)
-  frmLB.grid_propagate(0)
-  frmRT.grid_propagate(0)
-  #第3行第1列插入按钮Send
-  btnSend.grid(row=2, column=0)
-  btnCancel.grid(row=2, column=1)
-  lblImage.grid()
-  txtMsgList.grid()
-  txtMsg.grid()
-
-  #主事件循环
-  t.mainloop()
+    root.mainloop()
 
 if __name__ == '__main__':
     main()

@@ -28,7 +28,7 @@ mycursor = mydb.cursor()
 stop_words = set(stopwords.words('english'))
 np.set_printoptions(threshold=sys.maxsize)
 df = pd.read_csv("icliniqQAs.csv")
-model = tf.keras.models.load_model('model.h5')
+model = tf.keras.models.load_model('model_bigru(max_10k).h5')
 model.summary()
 batch_size = 1
 max_length = 128  # Maximum length of input sentence to the model.
@@ -220,7 +220,7 @@ def tagsanswer(question):
 def accuracy():
     counter_max = 0
     #kng = KG()
-    for num, question in enumerate(df['question']):
+    for num, question in enumerate(df['question'][:10]):
         #answer = kng.KGanswer(question)
 
         # pred, prob = check_similarity(question, answer)
