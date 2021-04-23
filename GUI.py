@@ -37,10 +37,10 @@ class ChatBotGraph:
             pred, prob = check_similarity(sent, final_answers[0])
             print(pred, " ", prob)
 
-            # if (pred == "contradiction"):
-            #     answer, index = tagsanswer(sent)
-            #     print("sim: ", answer)
-            #     return answer
+            if (pred == "contradiction"):
+                answer, index = tagsanswer(sent)
+                print("sim: ", answer)
+                return answer
 
             return '\n'.join(final_answers)
 
