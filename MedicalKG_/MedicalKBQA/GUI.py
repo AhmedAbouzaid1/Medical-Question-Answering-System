@@ -36,12 +36,6 @@ class ChatBotGraph:
         else:
             pred, prob = check_similarity(sent, final_answers[0])
             print(pred, " ", prob)
-
-            if (pred == "contradiction"):
-                answer, index = tagsanswer(sent)
-                print("sim: ", answer)
-                return answer
-
             return '\n'.join(final_answers)
 
 
@@ -63,30 +57,6 @@ def main():
                                              time.localtime()) + '\n'
         chatWindow.insert(END, strMsg2, 'quest')
         chatWindow.insert(END, text2)
-    #
-    # def cancelMsg():  # 取消消息
-    #     txtMsg.delete('0.0', END)
-
-    # def retrieve_input():
-    #     input = messageWindow.get("1.0", END)
-    #     print(input)
-    #     # messageWindow.delete('0.0', END)
-    #     # answer = handler.chat_main(input)
-    #     text2 = handler.chat_main(input) + '\n '
-    #     writeanswer(text2)
-
-    # def writeanswer(answer):
-    #     strMsg = 'User:' + time.strftime("%Y-%m-%d %H:%M:%S",
-    #                                      time.localtime()) + '\n'
-    #     chatWindow.insert(END, strMsg, 'greencolor')
-    #     chatWindow.insert(END, messageWindow.get("1.0", END))
-    #     text = messageWindow.get('0.0', END)
-    #     messageWindow.delete('0.0', END)
-    #     strMsg2 = 'Medical Assistant:' + time.strftime("%Y-%m-%d %H:%M:%S",
-    #                                          time.localtime()) + '\n'
-    #     chatWindow.insert(END, strMsg2, 'greencolor')
-    #     chatWindow.insert(END, answer)
-
 
     root = Tk()
 

@@ -16,9 +16,7 @@ labels = ["contradiction", "entailment", "neutral"]
 train_df = pd.read_csv("SNLI_Corpus/snli_1.0_train.csv", nrows=100000)
 valid_df = pd.read_csv("SNLI_Corpus/snli_1.0_dev.csv")
 test_df = pd.read_csv("SNLI_Corpus/snli_1.0_test.csv")
-train_df = train_df[:10000]
-valid_df = valid_df[:10000]
-test_df = test_df[:1000]
+
 # Shape of the data
 print(f"Total train samples : {train_df.shape[0]}")
 print(f"Total validation samples: {valid_df.shape[0]}")
@@ -175,11 +173,12 @@ with strategy.scope():
     bilstm = tf.keras.layers.Bidirectional(
         tf.keras.layers.LSTM(64, return_sequences=True)
     )(sequence_output)
+
     # CNN = tf.keras.layers.Conv1D(filters=32, kernel_size= 5, activation='relu')(sequence_output)
     # avg_pool = tf.keras.layers.AveragePooling1D(3)(CNN)
     # CNN = tf.keras.layers.Conv1D(filters=32, kernel_size=5, activation='relu')(avg_pool)
     # max_pool = tf.keras.layers.MaxPooling1D(3)(CNN)
-    # CNN = tf.keras.layers.Conv1D(filters=32, kernel_size=5, activation='relu')(max_pool)
+    # CNN = tf.keras.layers.Conv1D(filters=32, kernel_size=5, activation='relu')(sequence_output)
     # avg_pool = tf.keras.layers.GlobalAveragePooling1D()(CNN)
     # max_pool = tf.keras.layers.GlobalMaxPooling1D()(CNN)
     # concat = tf.keras.layers.concatenate([avg_pool, max_pool])
@@ -218,8 +217,7 @@ valid_data = BertSemanticDataGenerator(
     valid_df[["sentence1", "sentence2"]].values.astype("str"),
     y_val,
     batch_size=batch_size,
-    shuffle=False,
-)
+    shuffle=False,)
 
 history = model.fit(
     train_data,
@@ -233,12 +231,40 @@ history = model.fit(
 
 # Unfreeze the bert_model.
 bert_model.trainable = True
+
+from keras import backend as K
+
+
+def recall_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+    recall = true_positives / (possible_positives + K.epsilon())
+    return recall
+
+def precision_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    return precision
+
+def f1_m(y_true, y_pred):
+    precision = precision_m(y_true, y_pred)
+    recall = recall_m(y_true, y_pred)
+    return 2*((precision*recall)/(precision+recall+K.epsilon()))
+
+
+# compile the model
+
+# fit the model
+
+# evaluate the model
 # Recompile the model to make the change effective.
 model.compile(
     optimizer=tf.keras.optimizers.Adam(1e-5),
     loss="categorical_crossentropy",
-    metrics=["accuracy"],
+    metrics = ["accuracy", f1_m, precision_m, recall_m],
 )
+
 model.summary()
 
 history = model.fit(
@@ -284,5 +310,5 @@ cp_callback = tf.keras.callbacks.ModelCheckpoint(
 
 model.save_weights(checkpoint_path.format(epoch=0))
 # model.save('saved_model1/my_model')
-model.save('model_bigru(max_10k).h5')
+model.save('BERT_BiLSTM_BiGRU(full).h5')
 

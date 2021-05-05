@@ -25,8 +25,8 @@ mycursor = mydb.cursor()
 df = pd.read_csv(
     "icliniqQAs.csv")
 Q1 = df["question"]
-id = 1
-for i in Q1:
+id = 23903
+for i in Q1[23902:]:
     i = i.lower()
     i = i.translate(str.maketrans('', '', string.punctuation))
 
@@ -84,7 +84,6 @@ for i in Q1:
 
     res = get_top_n(tf_idf_score, 100)
     tags = list(res.keys())[:]
-    print("The question tags: ")
 
     ##################################################################################
 
@@ -115,5 +114,6 @@ for i in Q1:
         sql = "INSERT INTO tags (id, tag) VALUES (%s, %s)"
         val = (id, x)
         mycursor.execute(sql, val)
+        print(sql)
         mydb.commit()
     id = id + 1

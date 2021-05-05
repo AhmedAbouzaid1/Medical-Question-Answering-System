@@ -27,8 +27,8 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 stop_words = set(stopwords.words('english'))
 np.set_printoptions(threshold=sys.maxsize)
-df = pd.read_csv("C:/Users/CSE-P07-2179-G9/PycharmProjects/pythonProject1/icliniqQAs.csv")
-model = tf.keras.models.load_model('model_bigru.h5')
+df = pd.read_csv("C:/Users\CSE-P07-2179-G9\Documents\GitHub\Medical-Question-Answering-System\icliniqQAs.csv")
+model = tf.keras.models.load_model('C://Users\CSE-P07-2179-G9\Documents\GitHub\Medical-Question-Answering-System/bert_(bilstm-bigru)_sim_model.h5')
 #model = tf.keras.models.load_model('C:/Users/CSE-P07-2179-G9/PycharmProjects/pythonProject/HHH-An-Online-Question-Answering-System-for-Medical-Questions/model_bigru.h5')
 model.summary()
 batch_size = 1
@@ -183,12 +183,14 @@ def tagsanswer(question):
     res = get_top_n(tf_idf_score,100)
     tags = list(res.keys())[:]
 
-    query = "SELECT id FROM questiontags.tags WHERE tag = "
+    query = "SELECT id FROM questiontags.tags where id > 466 and (tag = "
     for x in tags:
         query = query + "'" + x + "'" + " or tag = "
-
+    ##############
     query = query[:len(query) - 10]
-    # print(query)
+    query += ')'
+
+    print(query)
     mycursor.execute(query)
 
     myresult = mycursor.fetchall()
@@ -199,7 +201,7 @@ def tagsanswer(question):
         Output[elem[0]] += 1
 
     # Printing output
-    a = sorted(Output.items(), key=lambda x: x[1], reverse=True)[:3]
+    a = sorted(Output.items(), key=lambda x: x[1], reverse=True)[:5]
     res = []
     for x in a:
         q2 = df['question']
