@@ -17,6 +17,8 @@ System architecture
 
 1. Exploration of different WordEmbeddings
 
+Word embeddings which are also known as word representations are needed to map words and phrases into a low-dimensional continuous space. The base model that we are comparing through the experiments  uses BERT. The first embedding that was explored was word2vec and the second one was FastText. The results are shown in the table below. 
+
 | Word Embedding  | Evaluation Accuracy |
 | ------------- | ------------- |
 | word2vec  | 86.31% |
@@ -24,6 +26,8 @@ System architecture
 | BERT | 86.91% |
 
  2. Exploration on different feature extraction:
+ 
+Feature extraction is the process of reducing the data into more manageable groups for processing. The first method experimented was a basic CNN layer instead of BiLSTM; however, the results were not promising as the accuracy decreased. The second method was BiGRU and it yielded an accuracy very close to the BiLSTM. The last method experimented was the concatenation of both the BiLSTM and BiGRU layers and together they composed the feature extraction layer of the semantic similarity model.  Below are the results:
  
 | Accuracy  | Precision | Recall | F1 |
 | ------------- | ------------- | ------------- | ------------- |
