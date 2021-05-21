@@ -17,6 +17,8 @@ The system consists of 3 main modules: Knowledge Graph, Keyword Extractor, and B
 
 **Keyword Extraction**
 
+The keyword extraction section is placed over the similarity model as a preprocessing layer to filters the dataset questions in order to extract the most relevant ones based on the user question, and an optimization layer that significantly speeds up the question answering process. The extraction layer consists of two major sections: a populated SQL database that contains the dataset questions id with the keywords and the synonyms of each question, and an extraction algorithm that retrieves the most relevant questions. As shown in the figure below, the extraction flow starts with receiving a question that is being processed using NLTK to extract the questions' keywords and their corresponding synonyms. A SQL selection query is then used to select all questions that match the extracted keywords. Accordingly, the questions that have the most keywords occurrences are extracted to be passed to the similarity model.
+
 ![Keyword_extraction (1)](https://user-images.githubusercontent.com/39261594/119188040-69e00e80-ba7a-11eb-82c3-249b86d544a6.png)
 
 
