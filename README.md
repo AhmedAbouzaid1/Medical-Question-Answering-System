@@ -95,5 +95,6 @@ Q2: _What is coronavirus?_
 A2: _Coronavirus are a type of virus - there aremany kinds, and some of them can cause disease. Examples of coronaviruses include the commoncold,  flu,  to  more  severe  diseases  like  MiddleEast  Respiratory  Syndrome  (MERS-CoV)  and Severe Acute Respiratory Syndrome (SARS-CoV)._
 
 
-
-
+| Overall System  |  Accuracy |
+| ------------- | ------------- |
+| KG+BBBSM | 86.48% |
