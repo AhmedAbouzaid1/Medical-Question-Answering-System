@@ -10,6 +10,7 @@ https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zi
 
 
 System architecture
-![Picture1](https://user-images.githubusercontent.com/39261594/114419846-12fe3400-9bb4-11eb-8f70-ba9df4bcc18f.jpg)
+![Overall System Architecture](https://user-images.githubusercontent.com/39261594/119176328-41044d00-ba6b-11eb-8b44-5a247845b483.png)
+
 
 
