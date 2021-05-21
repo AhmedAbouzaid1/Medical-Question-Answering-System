@@ -36,11 +36,11 @@ The  examples  below  illustrate  the  retrieved answers for sample questions th
 
 Q1: _What are the symptoms of lung cancer?_
 
-A1: _The   symptoms   of   lung   cancer   include:hemoptysis with chest pain stem in bloodshot couwith weight loss sticky or purulent sputum with...slightly... chest  pain  fever  with  cough  plantingspread lung nodules._
+A1: _The   symptoms   of   lung   cancer   include:hemoptysis with chest pain stem in bloodshot couwith weight loss sticky or purulent sputum with, slightly, chest  pain  fever  with  cough  planting spread lung nodules._
 
 Q2: _What is coronavirus?_
 
-A2: _Coronavirus are a type of virus - there aremany kinds, and some of them can cause disease.Examples of coronaviruses include the commoncold,  flu,  to  more  severe  diseases  like  MiddleEast  Respiratory  Syndrome  (MERS-CoV)  andSevere Acute Respiratory Syndrome (SARS-CoV)._
+A2: _Coronavirus are a type of virus - there aremany kinds, and some of them can cause disease. Examples of coronaviruses include the commoncold,  flu,  to  more  severe  diseases  like  MiddleEast  Respiratory  Syndrome  (MERS-CoV)  and Severe Acute Respiratory Syndrome (SARS-CoV)._
 
 
 
