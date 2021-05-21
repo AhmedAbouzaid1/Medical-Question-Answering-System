@@ -8,12 +8,13 @@ The system consists of 3 main modules: Knowledge Graph, Keyword Extractor, and B
 
 ![Overall System Architecture](https://user-images.githubusercontent.com/39261594/119176328-41044d00-ba6b-11eb-8b44-5a247845b483.png)
 
-#Knowledge Graph
+# Knowledge Graph
 
 Neo4j-based graph database is further modified to store the medical information. Cypher language and index adjacency are used in target access of data queries, which increases the query speed and eases the subsequent retrievals.
 
 **Answer Extraction
 **
+
 1.	Input question is provided.
 2.	Key entities are from the input question.
 3.	Question intentions are derived.  
@@ -39,20 +40,20 @@ Neo4j-based graph database is further modified to store the medical information.
 
 
 
-#Keyword Extraction
+# Keyword Extraction
 
 The keyword extraction section is placed over the similarity model as a preprocessing layer to filters the dataset questions in order to extract the most relevant ones based on the user question, and an optimization layer that significantly speeds up the question answering process. The extraction layer consists of two major sections: a populated SQL database that contains the dataset questions id with the keywords and the synonyms of each question, and an extraction algorithm that retrieves the most relevant questions. As shown in the figure below, the extraction flow starts with receiving a question that is being processed using NLTK to extract the questions' keywords and their corresponding synonyms. A SQL selection query is then used to select all questions that match the extracted keywords. Accordingly, the questions that have the most keywords occurrences are extracted to be passed to the similarity model.
 
 ![Keyword_extraction (1)](https://user-images.githubusercontent.com/39261594/119188040-69e00e80-ba7a-11eb-82c3-249b86d544a6.png)
 
 
-#BERT, BiLSTM, BiGRU Semantic Similarity Model
+# BERT, BiLSTM, BiGRU Semantic Similarity Model
 
 Our Similarity Model is divided into different layers as mentioned earlier. Our similarity model takes two sentences as an input. Then for each sentence we use BERT as word embedding. Then each word embedding vector get send once to the BiLSTM layer and another time to the BiGRU layer. Then the output of each feature extraction layer gets send to a max pooling and average pooling layers. We concatenate the 2 feature extraction outputs of the max pooling and 2 feature extraction outputs of the average pooling then the output of the concatenation layer gets send to a dense layer as a final step.    
 
 ![simModel](https://user-images.githubusercontent.com/39261594/119187728-048c1d80-ba7a-11eb-9427-cca9b24ccf5e.png)
 
-#Environment setup
+# Environment setup
 
 1. Download Neo4j Graph Database using the following link: https://neo4j.com/download/
 2. Create a new folder in Neo4j and import the following DB in Neo4j: https://drive.google.com/file/d/1aodIZ6Dl5qCPJZg7W5ki_UQug-gt5iET/view?usp=sharing
@@ -61,7 +62,7 @@ Our Similarity Model is divided into different layers as mentioned earlier. Our 
 5. Download google/bert_uncased_L-12_H-768_A-12: https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
 6. Clone the main branch and run GUI.py
 
-#Experiments and Results
+# Experiments and Results
 
 **1. Exploration of different WordEmbeddings
 **
@@ -96,7 +97,7 @@ Q2: _What is coronavirus?_
 
 A2: _Coronavirus are a type of virus - there aremany kinds, and some of them can cause disease. Examples of coronaviruses include the commoncold,  flu,  to  more  severe  diseases  like  MiddleEast  Respiratory  Syndrome  (MERS-CoV)  and Severe Acute Respiratory Syndrome (SARS-CoV)._
 
-#System Accuracy 
+# System Accuracy 
 
 | Overall System  |  Accuracy |
 | ------------- | ------------- |
