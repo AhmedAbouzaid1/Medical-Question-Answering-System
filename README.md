@@ -2,10 +2,19 @@
 
 
 
-**System architecture**
+**System Architecture**
+
 The system is consisting of 3 main modules: Knowledge Graph, Keyword Extractor, and BERT, BiLSTM, BiGRU semantic similarity model
 
 ![Overall System Architecture](https://user-images.githubusercontent.com/39261594/119176328-41044d00-ba6b-11eb-8b44-5a247845b483.png)
+
+**Knowledge Graph**
+
+![KG SARS](https://user-images.githubusercontent.com/39261594/119187647-ea523f80-ba79-11eb-90ef-316e53b5330c.png)
+
+**BERT, BiLSTM, BiGRU Semantic Similarity Model**
+
+![simModel](https://user-images.githubusercontent.com/39261594/119187728-048c1d80-ba7a-11eb-9427-cca9b24ccf5e.png)
 
 **To run the code on your own machine:**
 
