@@ -24,6 +24,7 @@ System architecture
 | BERT | 86.91% |
 
  2. Exploration on different feature extraction:
+ 
 | Accuracy  | Precision | Recall | F1 |
 | ------------- | ------------- | ------------- | ------------- |
 | BiLSTM  | 86.3% | 86.2% | **88.7%** | 87.4% |
