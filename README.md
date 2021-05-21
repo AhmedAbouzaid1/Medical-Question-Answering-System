@@ -12,8 +12,7 @@ The system consists of 3 main modules: Knowledge Graph, Keyword Extractor, and B
 
 Neo4j-based graph database is further modified to store the medical information. Cypher language and index adjacency are used in target access of data queries, which increases the query speed and eases the subsequent retrievals.
 
-**Answer Extraction
-**
+**Answer Extraction**
 
 1.	Input question is provided.
 2.	Key entities are from the input question.
@@ -26,8 +25,7 @@ Neo4j-based graph database is further modified to store the medical information.
 <img src="https://user-images.githubusercontent.com/39261594/119187647-ea523f80-ba79-11eb-90ef-316e53b5330c.png" width="300" height="550">
 </p>
 
-**Knowledge Graph Question Classification
-**
+**Knowledge Graph Question Classification**
 
 | Question Type  | Question Example |
 | ------------- | ------------- |
@@ -64,8 +62,7 @@ Our Similarity Model is divided into different layers as mentioned earlier. Our 
 
 # Experiments and Results
 
-**1. Exploration of different WordEmbeddings
-**
+**1. Exploration of different WordEmbeddings**
 
 Word embeddings which are also known as word representations are needed to map words and phrases into a low-dimensional continuous space. The base model that we are comparing through the experiments  uses BERT. The first embedding that was explored was word2vec and the second one was FastText. The results are shown in the table below. 
 
@@ -75,8 +72,7 @@ Word embeddings which are also known as word representations are needed to map w
 | fast-text | 82.8% |
 | BERT | 86.91% |
 
-** 2. Exploration on different feature extraction:
-**
+** 2. Exploration on different feature extraction:**
 
 Feature extraction is the process of reducing the data into more manageable groups for processing. The first method experimented was a basic CNN layer instead of BiLSTM; however, the results were not promising as the accuracy decreased. The second method was BiGRU and it yielded an accuracy very close to the BiLSTM. The last method experimented was the concatenation of both the BiLSTM and BiGRU layers and together they composed the feature extraction layer of the semantic similarity model.  Below are the results:
  
