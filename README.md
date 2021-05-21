@@ -12,6 +12,9 @@ The system consists of 3 main modules: Knowledge Graph, Keyword Extractor, and B
 
 ![KG SARS](https://user-images.githubusercontent.com/39261594/119187647-ea523f80-ba79-11eb-90ef-316e53b5330c.png =400x800)
 
+<img src="https://user-images.githubusercontent.com/39261594/119187647-ea523f80-ba79-11eb-90ef-316e53b5330c.png" width="400" height="800">
+
+
 **Keyword Extraction**
 
 ![Keyword_extraction (1)](https://user-images.githubusercontent.com/39261594/119188040-69e00e80-ba7a-11eb-82c3-249b86d544a6.png)
