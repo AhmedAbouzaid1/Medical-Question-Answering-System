@@ -2,7 +2,7 @@
 
 
 
-#System Architecture
+# System Architecture
 
 The system consists of 3 main modules: Knowledge Graph, Keyword Extractor, and BERT, BiLSTM, BiGRU semantic similarity model.
 
