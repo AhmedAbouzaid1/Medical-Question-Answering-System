@@ -4,15 +4,39 @@
 
 **System Architecture**
 
-The system consists of 3 main modules: Knowledge Graph, Keyword Extractor, and BERT, BiLSTM, BiGRU semantic similarity model
+The system consists of 3 main modules: Knowledge Graph, Keyword Extractor, and BERT, BiLSTM, BiGRU semantic similarity model.
 
 ![Overall System Architecture](https://user-images.githubusercontent.com/39261594/119176328-41044d00-ba6b-11eb-8b44-5a247845b483.png)
 
 **Knowledge Graph**
 
+Neo4j-based graph database is further modified to store the medical information. Cypher language and index adjacency are used in target access of data queries, which increases the query speed and eases the subsequent retrievals.
+
+_Answer Extraction_
+
+1.	Input question is provided.
+2.	Key entities are from the input question.
+3.	Question intentions are derived.  
+4.	Disease & Symptom Extractor is used to extract entities and the intentions.
+5.	 Cypher Language is built to query from the knowledge graph by integrating the D&S entities and the user intention extracted from the previous stage.
+6.	Returned answers are cleaned and provided to user. 
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/39261594/119187647-ea523f80-ba79-11eb-90ef-316e53b5330c.png" width="300" height="550">
 </p>
+
+_Knowledge Graph Question Classification_
+
+
+| Question Type  | Question Example |
+| ------------- | ------------- |
+| Disease_symptom  | Symptoms of lung cancer? |
+| Symptom_disease | What causes fever? |
+| Disease_Cause | Lung cancer causes? |
+| Disease_prevent | How to prevent cold? |
+| Disease_cureaway | Medications for cold? |
+| Disease_lasttime | Sars Lifetime |
+
 
 
 **Keyword Extraction**
@@ -23,6 +47,8 @@ The keyword extraction section is placed over the similarity model as a preproce
 
 
 **BERT, BiLSTM, BiGRU Semantic Similarity Model**
+
+Our Similarity Model is divided into different layers as mentioned earlier. Our similarity model takes two sentences as an input. Then for each sentence we use BERT as word embedding. Then each word embedding vector get send once to the BiLSTM layer and another time to the BiGRU layer. Then the output of each feature extraction layer gets send to a max pooling and average pooling layers. We concatenate the 2 feature extraction outputs of the max pooling and 2 feature extraction outputs of the average pooling then the output of the concatenation layer gets send to a dense layer as a final step.    
 
 ![simModel](https://user-images.githubusercontent.com/39261594/119187728-048c1d80-ba7a-11eb-9427-cca9b24ccf5e.png)
 
