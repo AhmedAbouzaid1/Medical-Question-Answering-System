@@ -183,12 +183,13 @@ def tagsanswer(question):
     res = get_top_n(tf_idf_score, 100)
     tags = list(res.keys())[:]
 
-    query = "SELECT id FROM questiontags.tags WHERE tag = "
+    query = "SELECT id FROM questiontags.tags where id > 466 and (tag = "
     for x in tags:
         query = query + "'" + x + "'" + " or tag = "
 
     query = query[:len(query) - 10]
     # print(query)
+    query += ')'
     mycursor.execute(query)
 
     myresult = mycursor.fetchall()

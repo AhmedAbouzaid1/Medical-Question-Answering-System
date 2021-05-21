@@ -27,7 +27,7 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 stop_words = set(stopwords.words('english'))
 np.set_printoptions(threshold=sys.maxsize)
-df = pd.read_csv("C:/Users\CSE-P07-2179-G9\Documents\GitHub\Medical-Question-Answering-System\icliniqQAs.csv")
+df = pd.read_csv("C:/Users\CSE-P07-2179-G9\Documents\GitHub\Medical-Question-Answering-System\Full Paraphrased Dataset.csv")
 model = tf.keras.models.load_model('C://Users\CSE-P07-2179-G9\Documents\GitHub\Medical-Question-Answering-System/bert_(bilstm-bigru)_sim_model.h5')
 #model = tf.keras.models.load_model('C:/Users/CSE-P07-2179-G9/PycharmProjects/pythonProject/HHH-An-Online-Question-Answering-System-for-Medical-Questions/model_bigru.h5')
 model.summary()
@@ -182,15 +182,16 @@ def tagsanswer(question):
 
     res = get_top_n(tf_idf_score,100)
     tags = list(res.keys())[:]
+    print(tags)
+    # query = "SELECT id FROM questiontags.tags where id > 466 and (tag = "
+    query = "SELECT id FROM questiontags.tags where id < 467 and (tag = "
 
-    query = "SELECT id FROM questiontags.tags where id > 466 and (tag = "
     for x in tags:
         query = query + "'" + x + "'" + " or tag = "
     ##############
     query = query[:len(query) - 10]
     query += ')'
-
-    print(query)
+    # print(query)
     mycursor.execute(query)
 
     myresult = mycursor.fetchall()
@@ -203,15 +204,17 @@ def tagsanswer(question):
     # Printing output
     a = sorted(Output.items(), key=lambda x: x[1], reverse=True)[:5]
     res = []
+    # print(a)
     for x in a:
-        q2 = df['question']
+        q2 = df['Paraphrased Question']
         #print(x[0]-1)
+        # print(q2[x[0]])
         q2 = q2[x[0] -1]
         #print(q2)
         xx = check_similarity(question, q2)
         if (xx[0] != 'contradiction'):
             res.append(xx[1])
-
+    print(res)
     index = res.index(max(res))
     index = a[index]
     # print(index[0])
@@ -224,10 +227,10 @@ def tagsanswer(question):
 def accuracy():
     counter_max = 0
     kng = KG()
-    for num, question in enumerate(df['question']):
+    for num, question in enumerate(df['Paraphrased Question']):
+        print(question)
+        if num == 52 or num == 290 or num == 330 or num == 331 or num == 191 or num == 441:
 
-        print(num)
-        if num == 330 or num == 331 or num == 191:
             answer, index = tagsanswer(question)
             if index == num:
                 counter_max += 1
@@ -236,7 +239,7 @@ def accuracy():
             answer = kng.KGanswer(question)
 
             pred, prob = check_similarity(question, answer)
-            print(pred, " ", prob)
+            # print(pred, " ", prob)
             if (pred == "contradiction"):
                 answer = False
 
@@ -249,8 +252,8 @@ def accuracy():
                 print(question, answer)
                 counter_max += 1
 
-
-    print(counter_max/num)
+    print(counter_max)
+    # print(counter_max/num)
 
 def main():
     accuracy()
