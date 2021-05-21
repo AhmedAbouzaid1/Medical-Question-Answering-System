@@ -13,6 +13,15 @@ To run the code on your own machine:
 4. Download google/bert_uncased_L-12_H-768_A-12: https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
 5. Clone the main branch and run GUI.py
 
+Experiments and results
+
+| Word Embedding  | Evaluation Accuracy |
+| ------------- | ------------- |
+| word2vec  | 86.31% |
+| fast-text | 82.8% |
+| BERT | 86.91% |
+
+
 
 
 
