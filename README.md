@@ -1,12 +1,5 @@
 # Medical-Question-Answering-System
 
-.h5 model:
-
-https://drive.google.com/file/d/1gNGI4nmKXp9g38-rrpraIweXaJhkaQLc/view?usp=sharing
-
-BERT-Base, Uncased: 12-layer, 768-hidden, 12-heads, 110M parameters
-
-https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
 
 
 System architecture
@@ -17,7 +10,8 @@ To run the code on your own machine:
 1. Download Neo4j Graph Database using the following link: https://neo4j.com/download/
 2. Create a new folder in Neo4j and import the following DB in Neo4j: https://drive.google.com/file/d/1aodIZ6Dl5qCPJZg7W5ki_UQug-gt5iET/view?usp=sharing
 3. Download the .h5 file: https://drive.google.com/file/d/1gNGI4nmKXp9g38-rrpraIweXaJhkaQLc/view?usp=sharing
-4. Clone the main branch and run GUI.py
+4. Download google/bert_uncased_L-12_H-768_A-12: https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
+5. Clone the main branch and run GUI.py
 
 
 
