@@ -15,7 +15,7 @@ System architecture
 
 **Experiments and Results**
 
-Exploration of different WordEmbeddings
+1. Exploration of different WordEmbeddings
 
 | Word Embedding  | Evaluation Accuracy |
 | ------------- | ------------- |
@@ -23,7 +23,7 @@ Exploration of different WordEmbeddings
 | fast-text | 82.8% |
 | BERT | 86.91% |
 
- Exploration on different feature extraction:
+ 2. Exploration on different feature extraction:
 | Accuracy  | Precision | Recall | F1 |
 | ------------- | ------------- | ------------- | ------------- |
 | BiLSTM  | 86.3% | 86.2% | **88.7%** | 87.4% |
